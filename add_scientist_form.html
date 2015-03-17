@@ -1,27 +1,28 @@
 <!Doctype html>
 <html>
     <head>
+        <meta charset=utf-8>
     </head>
     <body>
         <form id = "add_scientist.php" method = 'POST'>
-            <p>Name: <input id = "id_name" type = 'text' name = 'Name' onkeyup = check_length()></p>
-            <p>Contribution message:<input id = "id_contribution" type = 'text' name = 'Contribution' onkeyup = check_length()></p>
+            <p>Name: <input id = "Id_name" type = "text" name = "Name" onkeyup = check_length()></p>
+            <p>Contribution message:<input id = "Id_contribution" type = 'text' name = 'Contribution' onkeyup = check_length()></p>
             <p>Birthday:<input type = 'text' name = 'birthday'></p>
             <p id = "too_long_warning"></p>
-            <p><input id = "id_submit" type = 'submit' name = 'Submit' value = 'submit'></p>
+            <p><input id = "Id_submit" type = 'submit' name = 'Submit' value = 'submit'></p>
         </form>
         <script>
             function check_length(){
-                var name = document.getElementById('id_name');
+                var name = document.getElementById('Id_name').value;
                 var name_length = name.length;
-                var contribution = document.getElementById('id_contribution');
+                var contribution = document.getElementById('Id_contribution').value;
                 var contribution_length = contribution.length;
                 if(name_length + contribution_length > 79){
-                    document.getElementById('id_submit').disabled = true;
+                    document.getElementById('Id_submit').disabled = true;
                     document.getElementById('too_long_warning').innerHTML = "Too long, scientist's name and contribution together must be less that 79 chars";
                 }else{
-                    document.getElementById('id_submit').disabled = false;
-                    document.getElementById('too_long_warning).innerHTML = "";
+                    document.getElementById('Id_submit').disabled = false;
+                    document.getElementById('too_long_warning').innerHTML = "";
                 };
             };
         </script>

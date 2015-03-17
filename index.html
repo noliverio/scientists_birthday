@@ -2,6 +2,7 @@
 <html>
     <head>
         <title></title>
+        <meta charset=utf-8>
     </head>
     <body>
         <h1> Welcome! </h1>
@@ -9,8 +10,9 @@
         A text message with a five digit confirmation number will be sent to you upon registration, please enter that number
         on the following page to confirm your number.</p>
         <form action = "collect_phone_number.php" method = "POST">
-            <p>Name <input type = 'text' name = "Name" size = "50"</p>
-            <p>Phone number<input type = "text" name = "Phone_number" size = "10"></p>
+            <p>Name <input type = 'text' name = "Name" size = "50"></p>
+            <p id = "Id_phone_number_warning"></p>
+            <p>Phone number<input id = "Id_phone_number" type = "text" name = "Phone_number" maxlength= "10" size = "10" onkeyup = phone_number_is_valid()></p>
             <p>Cell phone service provider
             <select name = "Service_provider">
                 <option value = "ATT">AT&T</option>
@@ -23,9 +25,40 @@
                 <option value = "Virgin_mobile">Virgin mobile</option>
                 <option value = "Other">Other</option>
             </select> </p>
-            <input type = "submit" name = "Submit" value = "submit">
+            <input id = "Id_submit" type = "submit" name = "Submit" value = "submit">
         </form>
         <p>It is free to sign up for this service, but any standard messaging rates charged by your service provided will still apply</p>
+<!-- Only enable the submit button if the phone number is in the form of a 10 digit number -->
+        <script>
+            function check_phone_number_length(){
+                var phone_number = document.getElementById('Id_phone_number').value;
+                console.log(phone_number);
+                var length_of_phone_number = phone_number.length;
+                console.log(length_of_phone_number);
+                if(length_of_phone_number != 10){
+                    return false;
+                }else{
+                    return true;
+                };
+            };
+            function number_is_only_digits(){
+                var phone_number = document.getElementById('Id_phone_number').value;
+                if(phone_number.match(RegExp("^[0-9]+$")) != null){
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+            function phone_number_is_valid(){
+                if (check_phone_number_length() && number_is_only_digits()) {
+                    document.getElementById('Id_submit').disabled = false;
+                    document.getElementById('Id_phone_number_warning').innerHTML = "";
+                }else{
+                    document.getElementById('Id_submit').disabled = true;
+                    document.getElementById('Id_phone_number_warning').innerHTML = "Please enter your ten digit phone number, ex (123)456-7890 using only numbers";
+                }
+            }
+        </script>
     </body>
 </html>
 
