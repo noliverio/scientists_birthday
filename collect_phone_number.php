@@ -12,7 +12,9 @@ $Provider_to_domain = array(
            "Verizon" => "vtext.com",
            "Virgin_mobile" => "vmobl.com",
            );
-//  The phone number should be 10 digits long, but this acts as a second check
+$Confirmation_number = rand(int 10000, int 99999);
+
+//  The phone number should be 10 digit long number, but this acts as a second check
 If (strlen($Phone_number) === 10){
     $Email_address = $Phone_number.'@'.$Provider_to_domain[$Provider];
     echo "$Email_address";
