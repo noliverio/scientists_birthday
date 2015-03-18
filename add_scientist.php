@@ -61,7 +61,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $Query = "INSERT INTO scientists(first_name, last_name, contribution, birth_date) VALUES ('$First_name', '$Last_name', '$Contribution', '$Birth_date')";
         $Request = @mysqli_query($Database_connection, $Query);
         if($Request){
-            echo "$First_name $Last_Name added to the database";
+            echo "$First_name $Last_name added to the database";
+            echo "<p><a href = './add_scientist_form.html'>Add another</a></p>";
         }else{
             echo"<h1>System Error</h1>";
             echo"<p>$First_name $Last_name could not be added to the database due to a system error.</p>";

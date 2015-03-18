@@ -10,11 +10,11 @@
         A text message with a five digit confirmation number will be sent to you upon registration, please enter that number
         on the following page to confirm your number.</p>
         <form action = "collect_phone_number.php" method = "POST">
-            <p>Name <input type = 'text' name = "Name" size = "50"></p>
+            <p>Name <input type = 'text' name = "name" size = "50"></p>
             <p id = "Id_phone_number_warning"></p>
-            <p>Phone number<input id = "Id_phone_number" type = "text" name = "Phone_number" maxlength= "10" size = "10" onkeyup = phone_number_is_valid()></p>
+            <p>Phone number<input id = "Id_phone_number" type = "text" name = "phone_number" maxlength= "10" size = "10" onkeyup = phone_number_is_valid()></p>
             <p>Cell phone service provider
-            <select name = "Service_provider">
+            <select name = "service_provider">
                 <option value = "ATT">AT&T</option>
                 <option value = "Bell_canada">Bell Canada</option>
                 <option value = "Boost_mobile">Boost mobile</option>
@@ -32,9 +32,7 @@
         <script>
             function check_phone_number_length(){
                 var phone_number = document.getElementById('Id_phone_number').value;
-                console.log(phone_number);
                 var length_of_phone_number = phone_number.length;
-                console.log(length_of_phone_number);
                 if(length_of_phone_number != 10){
                     return false;
                 }else{
