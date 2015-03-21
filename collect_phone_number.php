@@ -49,10 +49,9 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $return_page = "<!Doctype html>\n<html>\n<head>\n<meta charset = utf8>\n</head>\n<body>\n$body_message\n$pass_phone_number\n$redirect_script\n</body>\n</html>";
             echo $return_page;
         }else{
-            echo 'error';
+            echo 'There was an error registering you, please try again later';
         }
     }
 }
-echo 'here';
 mysqli_close($Database_connection);
 ?>
