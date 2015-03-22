@@ -20,9 +20,9 @@
                 var name_length = name.length;
                 var contribution = document.getElementById('Id_contribution').value;
                 var contribution_length = contribution.length;
-                if(name_length + contribution_length >= 57){
+                if(name_length + contribution_length > 57){
                     document.getElementById('Id_submit').disabled = true;
-                    document.getElementById('too_long_warning').innerHTML = "Too long, scientist's name and contribution together must be less that 78 chars";
+                    document.getElementById('too_long_warning').innerHTML = "Too long, scientist's name and contribution together must be less that 57 chars";
                 }else{
                     document.getElementById('Id_submit').disabled = false;
                     document.getElementById('too_long_warning').innerHTML = "";
