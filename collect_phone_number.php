@@ -43,15 +43,29 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         $query = "INSERT INTO users(phone_number, name, active, confirmation_number, service_provider) VALUES ('$phone_number', '$name', '$active', '$confirmation_number', (SELECT provider_id FROM provider WHERE name = '$provider'));";
         $request = mysqli_query($Database_connection, $query);
         if($request){
+            send_user_confirmation_number($Database_connection, $phone_number, $provider, $confirmation_number);
             $body_message = "<p>You have successfully registered, look for a text with a confirmation number and enter it on the next page</p>";
             $redirect_script = "<script src = 'redirect_to_confirmation_page.js'></script>";
             $pass_phone_number = "<form method = 'POST' id = 'Pass_number' action = 'confirmation.php'><input type = 'hidden' name = 'Phone_number' value = $phone_number></form>";
             $return_page = "<!Doctype html>\n<html>\n<head>\n<meta charset = utf8>\n</head>\n<body>\n$body_message\n$pass_phone_number\n$redirect_script\n</body>\n</html>";
             echo $return_page;
+            
         }else{
             echo 'There was an error registering you, please try again later';
         }
     }
+}
+function send_user_confirmation_number($Database_connection, $number, $service_provider, $confirmation){
+    $get_domain_query = "SELECT domain FROM provider WHERE name = '$service_provider'";
+    $domain_mysql_format = mysqli_query($Database_connection, $get_domain_query);
+    while($domain_array = mysqli_fetch_array($domain_mysql_format, MYSQLI_ASSOC)) {
+        $domain = $domain_array['domain'];
+    }
+    $email_address = $number."@".$domain;
+    $message = "Your verification code is $confirmation";
+    $subject = "";
+    $from = "Scientist-birthday-mailer@nicholasoliverio.com";
+    mail($email_address, $subject, $message, "From:".$from);
 }
 mysqli_close($Database_connection);
 ?>
