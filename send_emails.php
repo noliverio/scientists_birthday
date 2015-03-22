@@ -31,7 +31,6 @@ if(count($scientists_born_today) > 1 ){
     //if there is only one scientist with today as a birthday use that scientist
     $scientist = $scientists_born_today[0];
 }
-echo "$scientist";
 if($scientist){
     if(!empty($scientist['last_name'])){
         $scientist_name = $scientist['first_name']." ".$scientist['last_name'];
