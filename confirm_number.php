@@ -1,9 +1,6 @@
 <?PHP
 // connect to the database, $Database_connection acts as the link
 require('../../mysqli_connection.php');
-// allows me to debug the script
-ini_set('display errors', 1);
-error_reporting(E_ALL | E_STRICT);
 // if the user navigates to this page directly, nothing should happen.
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $errors = array();
@@ -34,7 +31,6 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
             }else{
             echo"<h1>System Error</h1>";
             echo"<p>You could not be confirmed due to a system error.</p>";
-            echo'<p>'.mysqli_error($Database_connection).'<br /><br />Query: '.$query.'</p>';
             }
         }else{
             echo "Sorry it doesn't look like that is number that was sent to you ";
